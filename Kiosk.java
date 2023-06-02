@@ -81,7 +81,7 @@ public class Kiosk {
 //        beerMenu.add(beer1);
 //        beerMenu.add(beer2);
     }
-    void setmainMenu() {
+    void setmainMenu() { // 메인 메뉴판 세팅
         emp.sayMain();
         int a = 1;
         for (Menu item : mainMenu) {
@@ -96,7 +96,7 @@ public class Kiosk {
             item.showMenu();
         }
     }
-    void setbugerMenu() {
+    void setburgerMenu() { // 버거 메뉴판 세팅
         emp.sayProduct();
         System.out.println(" [ Burgers MENU ] ");
         int a = 1;
@@ -107,7 +107,7 @@ public class Kiosk {
         }
     }
 
-    void setcustardMenu() {
+    void setcustardMenu() { // custard 메뉴판 세팅
         emp.sayProduct();
         System.out.println(" [ Frozen Custard MENU ] ");
         int a = 1;
@@ -118,7 +118,7 @@ public class Kiosk {
         }
     }
 
-    void setdrinkMenu() {
+    void setdrinkMenu() { // drink 메뉴판 세팅
         emp.sayProduct();
         System.out.println(" [ Drinks MENU ] ");
         int a = 1;
@@ -129,7 +129,7 @@ public class Kiosk {
         }
     }
 
-    void setbeerMenu() {
+    void setbeerMenu() { // beer 메뉴판 세팅
         emp.sayProduct();
         System.out.println(" [ Beers MENU ] ");
         int a = 1;
@@ -139,46 +139,41 @@ public class Kiosk {
             item.showMenu();
         }
     }
-//    void optionMenu(int a){
-//        System.out.println(" [ ORDER MENU ] ");
-//        System.out.printf(a+". %-20s | %);
-//    }
-
     public void showKiosk() throws InterruptedException {
         loadMenu();
         int orderNumber;
         while(true){
             setmainMenu();
             orderNumber = sc.nextInt();
-//            switch(orderNumber){
+//            switch(orderNumber){ // switch문과 비슷한 코드의 상품메뉴판들을 통합한다면 줄일 수 있을 것으로 예상
 //                case 1 : case 2 : case 3 : case 4 :
 //            }
-            if (orderNumber == 1) {
-                setbugerMenu();
+            if (orderNumber == 1) { // 1은 burger 메뉴
+                setburgerMenu();
                 orderNumber = sc.nextInt();
-                order.addShopping(burgerMenu.get(orderNumber-1));
+                order.addShopping(burgerMenu.get(orderNumber-1)); // 리스트는 0부터 시작하므로, orderNumber-1로 상품추가
                 System.out.println();
-            } else if (orderNumber == 2) {
+            } else if (orderNumber == 2) { // 2는 custard 메뉴
                 setcustardMenu();
                 orderNumber = sc.nextInt();
                 order.addShopping(custardMenu.get(orderNumber-1));
                 System.out.println();
-            } else if (orderNumber == 3) {
+            } else if (orderNumber == 3) { // 3은 drink 메뉴
                 setdrinkMenu();
                 orderNumber = sc.nextInt();
                 order.addShopping(drinkMenu.get(orderNumber-1));
                 System.out.println();
-            } else if (orderNumber == 4) {
+            } else if (orderNumber == 4) { // 4는 beer 메뉴
                 setbeerMenu();
                 orderNumber = sc.nextInt();
                 order.addShopping(beerMenu.get(orderNumber-1));
                 System.out.println();
-            } else if (orderNumber == 5){
+            } else if (orderNumber == 5){ // 5는 주문 메뉴
                 order.productOrder();
-            } else if (orderNumber == 6){
+            } else if (orderNumber == 6){ // 6은 주문 취소 메뉴
                 order.shoppingCancel();
-            } else if (orderNumber == 7){
-                break;
+            } else { // 이외의 값을 입력 시 번호만 새로 입력받고 진행하면 될 듯하나,
+                System.out.println("잘못된 번호 입력입니다.");
             }
         }
     }
